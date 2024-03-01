@@ -1,23 +1,19 @@
-// import { BrowserRouter, Routes, Route } from "react-router-dom";
-// import Menu from "./components/Menu";
-// import ItemListContainer from "./components/ItemListContainer/ItemListContainer";
-import Grid from "./Grid";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Menu from "./components/Menu";
+import MostrarProductos from "./components/ProductosContainer/MostrarProductos.jsx";
 
 const App = () => {
   return (
-    <Grid />
-
-    // <BrowserRouter>
-
-    //   <Routes>
-    //     <Route exact path="/" element={<Menu />}></Route>
-    //     <Route
-    //       exact
-    //       path="/ItemListContainer"
-    //       element={<ItemListContainer />}
-    //     ></Route>
-    //   </Routes>
-    // </BrowserRouter>
+    <BrowserRouter>
+      <Routes>
+        <Route exact path="/" element={<Menu />}></Route>
+        <Route
+          exact
+          path="/MostrarProductos"
+          element={<MostrarProductos />}
+        ></Route>
+      </Routes>
+    </BrowserRouter>
   );
 };
 export default App;

@@ -10,7 +10,7 @@ const Menu = () => {
     <div>
       <Saludar greeting={"Bienvenido usuario ¿Que deseas hacer?"} />
       <div className="botonesMenu">
-        <Link to={"/ItemListContainer"} className="botonLink">
+        <Link to={"/MostrarProductos"} className="botonLink">
           <Button className="botonMenu" size="lg">
             Ver Stock
           </Button>
