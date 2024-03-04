@@ -32,6 +32,9 @@ const MostrarProductos = () => {
     <div className="GridContainer">
       <div className="row">
         <div className="col">
+          <Link to="/CrearProducto" className="CrearBoton">
+            <button>Crear</button>
+          </Link>
           <table className="tabla">
             <thead className="primera-tabla">
               <tr>
@@ -49,7 +52,7 @@ const MostrarProductos = () => {
                   <td>{producto.stock}</td>
                   <td>{producto.precio}</td>
                   <td>
-                    <Link to={`/edit/${producto.id}`} className="EditarLink">
+                    <Link to={`/editar/${producto.id}`} className="EditarLink">
                       Editar
                     </Link>
                     <button
