@@ -15,7 +15,7 @@ const Menu = () => {
             Ver Stock
           </Button>
         </Link>
-        <Link className="botonLink">
+        <Link to={"/crearProducto"} className="botonLink">
           <Button className="botonMenu" size="lg">
             Añadir producto
           </Button>

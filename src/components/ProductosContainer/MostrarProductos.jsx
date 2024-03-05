@@ -35,6 +35,9 @@ const MostrarProductos = () => {
           <Link to="/CrearProducto" className="CrearBoton">
             <button>Crear</button>
           </Link>
+          <Link to="/" className="VolverBoton">
+            <button>Volver</button>
+          </Link>
           <table className="tabla">
             <thead className="primera-tabla">
               <tr>

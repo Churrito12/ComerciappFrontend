@@ -11,10 +11,10 @@ const App = () => {
         <Route exact path="/" element={<Menu />}></Route>
         <Route
           exact
-          path="/MostrarProductos"
+          path="/mostrarProductos"
           element={<MostrarProductos />}
         ></Route>
-        <Route exact path="/crear" element={<CrearProducto />}></Route>
+        <Route exact path="/crearProducto" element={<CrearProducto />}></Route>
         <Route exact path="/editar/:id" element={<EditarProducto />}></Route>
       </Routes>
     </BrowserRouter>
