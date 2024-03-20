@@ -81,8 +81,9 @@ const EditarProducto = () => {
             onChange={(e) => setStock(e.target.value)}
           />
         </Form.Group>
+
         <Button variant="primary" type="submit">
-          Submit
+          Aceptar
         </Button>
       </Form>
     </div>

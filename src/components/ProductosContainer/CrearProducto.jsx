@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
+import { Link } from "react-router-dom";
 
 const URL = "http://localhost:8000/productos";
 
@@ -68,8 +69,11 @@ const CrearProducto = () => {
             onChange={(e) => setStock(e.target.value)}
           />
         </Form.Group>
+        <Link to="/MostrarProductos" className="VolverBoton">
+          <button>Volver</button>
+        </Link>
         <Button variant="primary" type="submit">
-          Submit
+          Aceptar
         </Button>
       </Form>
     </div>

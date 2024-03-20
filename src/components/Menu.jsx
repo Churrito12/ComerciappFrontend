@@ -26,7 +26,7 @@ const Menu = () => {
             Eliminar producto/proveedor
           </Button>
         </Link>
-        <Link className="botonLink">
+        <Link to={"/actualizarPrecios"} className="botonLink">
           <Button className="botonMenu" size="lg">
             Actualizar precio individual
           </Button>
@@ -36,7 +36,7 @@ const Menu = () => {
             Actualizar todos los precios
           </Button>
         </Link>
-        <Link className="botonLink">
+        <Link to={"/actualizarPreciosProveedor"} className="botonLink">
           <Button className="botonMenu" size="lg">
             Actualizar precio proveedor
           </Button>
