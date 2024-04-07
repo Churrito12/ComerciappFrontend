@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 
-const URL = "http://localhost:8000/productos";
+const URL = "http://localhost:8000/productos/";
 
 const MostrarProductos = () => {
   const [productos, setProductos] = useState([]);
@@ -39,11 +39,15 @@ const MostrarProductos = () => {
     setFiltroProveedor(e.target.value);
   };
 
-  const productosFiltrados = productos.filter(
-    (producto) =>
-      producto.nombre.toLowerCase().includes(filtroNombre.toLowerCase()) &&
-      producto.proveedor.toLowerCase().includes(filtroProveedor.toLowerCase())
-  );
+  const productosFiltrados = Array.isArray(productos)
+    ? productos.filter(
+        (producto) =>
+          producto.nombre.toLowerCase().includes(filtroNombre.toLowerCase()) &&
+          producto.proveedor
+            .toLowerCase()
+            .includes(filtroProveedor.toLowerCase())
+      )
+    : [];
 
   return (
     <div className="GridContainer">
@@ -67,6 +71,8 @@ const MostrarProductos = () => {
                 <th>Nombre</th>
                 <th>Proveedor</th>
                 <th>Stock</th>
+                <th>Máx</th>
+                <th>Mín</th>
                 <th>Precio</th>
               </tr>
             </thead>
@@ -76,6 +82,8 @@ const MostrarProductos = () => {
                   <td>{producto.nombre}</td>
                   <td>{producto.proveedor}</td>
                   <td>{producto.stock}</td>
+                  <td>{producto.stockMax}</td>
+                  <td>{producto.stockMin}</td>
                   <td>${producto.precio}</td>
                   <td>
                     <Link to={`/editar/${producto.id}`} className="EditarLink">

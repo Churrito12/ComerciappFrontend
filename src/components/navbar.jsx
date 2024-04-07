@@ -1,15 +1,16 @@
 import Button from "react-bootstrap/Button";
 import { Link } from "react-router-dom";
-import Saludar from "./Saludar";
+import "./navbar.css";
 
-const Menu = () => {
-  const saludar = () => {
-    Saludar();
-  };
+const navbar = () => {
   return (
     <div>
-      <Saludar greeting={"Bienvenido usuario ¿Que deseas hacer?"} />
       <div className="botonesMenu">
+        <Link to={"/"} className="botonLink">
+          <Button className="botonMenu" size="lg">
+            Ventas
+          </Button>
+        </Link>
         <Link to={"/mostrarproductos"} className="botonLink">
           <Button className="botonMenu" size="lg">
             Ver Stock
@@ -20,29 +21,23 @@ const Menu = () => {
             Añadir producto
           </Button>
         </Link>
-
-        <Link className="botonLink">
-          <Button className="botonMenu" size="lg">
-            Eliminar producto/proveedor
-          </Button>
-        </Link>
         <Link to={"/actualizarPrecios"} className="botonLink">
           <Button className="botonMenu" size="lg">
-            Actualizar precio individual
-          </Button>
-        </Link>
-        <Link className="botonLink">
-          <Button className="botonMenu" size="lg">
-            Actualizar todos los precios
+            Cambiar precios porcentual
           </Button>
         </Link>
         <Link to={"/actualizarPreciosProveedor"} className="botonLink">
           <Button className="botonMenu" size="lg">
-            Actualizar precio proveedor
+            Precios por proveedor
+          </Button>
+        </Link>
+        <Link className="botonLink">
+          <Button className="botonMenu" size="lg">
+            Usuarios
           </Button>
         </Link>
       </div>
     </div>
   );
 };
-export default Menu;
+export default navbar;

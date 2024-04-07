@@ -1,6 +1,5 @@
-import React from "react";
+import React, { useState } from "react";
 import axios from "axios";
-import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
@@ -13,20 +12,26 @@ const CrearProducto = () => {
   const [precio, setPrecio] = useState("");
   const [proveedor, setProveedor] = useState("");
   const [stock, setStock] = useState("");
+  const [stockMin, setStockMin] = useState("");
+  const [stockMax, setStockMax] = useState("");
   const navigate = useNavigate();
+  const [error, setError] = useState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post(URL, {
-        nombre: nombre,
-        precio: precio,
-        proveedor: proveedor,
-        stock: stock,
-      });
+      const nuevoProducto = {
+        nombre,
+        precio: parseFloat(precio),
+        proveedor,
+        stock: parseInt(stock),
+        stockMin: parseInt(stockMin),
+        stockMax: parseInt(stockMax),
+      };
+      await axios.post(URL, nuevoProducto);
       navigate("/MostrarProductos");
     } catch (error) {
-      console.error("Error al crear producto:", error);
+      setError("Error al crear producto.");
     }
   };
 
@@ -69,12 +74,31 @@ const CrearProducto = () => {
             onChange={(e) => setStock(e.target.value)}
           />
         </Form.Group>
-        <Link to="/MostrarProductos" className="VolverBoton">
-          <button>Volver</button>
-        </Link>
+        <Form.Group className="mb-3" controlId="formBasicPassword">
+          <Form.Label>Stock Mínimo</Form.Label>
+          <Form.Control
+            type="text"
+            placeholder=""
+            value={stockMin}
+            onChange={(e) => setStockMin(e.target.value)}
+          />
+        </Form.Group>
+        <Form.Group className="mb-3" controlId="formBasicPassword">
+          <Form.Label>Stock Máximo</Form.Label>
+          <Form.Control
+            type="text"
+            placeholder=""
+            value={stockMax}
+            onChange={(e) => setStockMax(e.target.value)}
+          />
+        </Form.Group>
         <Button variant="primary" type="submit">
           Aceptar
         </Button>
+        {error && <p>{error}</p>}
+        <Link to="/MostrarProductos" className="VolverBoton">
+          <Button>Volver</Button>
+        </Link>
       </Form>
     </div>
   );

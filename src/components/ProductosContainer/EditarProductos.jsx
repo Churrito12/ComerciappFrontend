@@ -11,35 +11,47 @@ const EditarProducto = () => {
   const [precio, setPrecio] = useState("");
   const [proveedor, setProveedor] = useState("");
   const [stock, setStock] = useState("");
+  const [stockMin, setStockMin] = useState("");
+  const [stockMax, setStockMax] = useState("");
+  const [error, setError] = useState("");
   const navigate = useNavigate();
   const { id } = useParams();
-
-  const actualizar = async (e) => {
-    e.preventDefault();
-    try {
-      await axios.put(URL + id, {
-        nombre: nombre,
-        precio: precio,
-        proveedor: proveedor,
-        stock: stock,
-      });
-
-      navigate("/mostrarproductos");
-    } catch (error) {
-      console.error("Error al actualizar el producto:", error);
-    }
-  };
 
   useEffect(() => {
     getProductoById();
   }, []);
 
   const getProductoById = async () => {
-    const res = await axios.get(URL + id);
-    setNombre(res.data.nombre);
-    setPrecio(res.data.precio);
-    setProveedor(res.data.proveedor);
-    setStock(res.data.stock);
+    try {
+      const res = await axios.get(URL + id);
+      const { nombre, precio, proveedor, stock, stockMin, stockMax } = res.data;
+      setNombre(nombre);
+      setPrecio(precio);
+      setProveedor(proveedor);
+      setStock(stock);
+      setStockMin(stockMin);
+      setStockMax(stockMax);
+    } catch (error) {
+      setError("Error al obtener el producto.");
+    }
+  };
+
+  const actualizar = async (e) => {
+    e.preventDefault();
+    try {
+      const updatedProducto = {
+        nombre,
+        precio: parseFloat(precio),
+        proveedor,
+        stock: parseInt(stock),
+        stockMin: parseInt(stockMin),
+        stockMax: parseInt(stockMax),
+      };
+      await axios.put(URL + id, updatedProducto);
+      navigate("/mostrarproductos");
+    } catch (error) {
+      setError("Error al actualizar el producto.");
+    }
   };
 
   return (
@@ -79,6 +91,24 @@ const EditarProducto = () => {
             placeholder=""
             value={stock}
             onChange={(e) => setStock(e.target.value)}
+          />
+        </Form.Group>
+        <Form.Group className="mb-3" controlId="formBasicPassword">
+          <Form.Label>Stock Mínimo</Form.Label>
+          <Form.Control
+            type="text"
+            placeholder=""
+            value={stockMin}
+            onChange={(e) => setStockMin(e.target.value)}
+          />
+        </Form.Group>
+        <Form.Group className="mb-3" controlId="formBasicPassword">
+          <Form.Label>Stock Máximo</Form.Label>
+          <Form.Control
+            type="text"
+            placeholder=""
+            value={stockMax}
+            onChange={(e) => setStockMax(e.target.value)}
           />
         </Form.Group>
 
