@@ -1,6 +1,5 @@
 .navbar {
   width: 100%;
-
   top: 0;
   z-index: 1000;
   background-color: rgb(82, 175, 6);
@@ -8,6 +7,8 @@
   justify-content: space-between;
   align-items: center;
   padding: 0 20px;
+  margin-bottom: 20px;
+  padding-bottom: 20px;
 }
 
 .links {
@@ -21,23 +22,24 @@
   margin-left: 20px;
   font-size: 18px;
 }
-
 .botonesMenu {
   display: flex;
-  align-items: center;
+  justify-content: space-between;
+  margin-top: 20px;
 }
 
 .botonLink {
-  margin-right: 10px;
+  flex-grow: 1;
+  margin: 0 10px;
 }
-
 .botonMenu {
   background-color: white !important;
   color: black !important;
   border-color: black !important;
   cursor: pointer;
   transition: all 0.3s ease;
-  width: 18rem;
+
+  width: auto;
 }
 
 .botonMenu:hover {
@@ -53,14 +55,16 @@
   color: black !important;
 }
 
-.navbar {
-  flex-wrap: wrap;
-}
+@media (max-width: 970px) {
+  .botonMenu {
+    width: auto;
+  }
+  .botonesMenu {
+    display: flex;
+    justify-content: space-between;
+  }
 
-.links {
-  margin-top: 10px;
-}
-
-.links a {
-  margin: 5px;
+  .botonLink {
+    flex-grow: 1;
+  }
 }

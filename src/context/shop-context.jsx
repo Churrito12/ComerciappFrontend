@@ -17,9 +17,9 @@ export const ShopContextProvider = (props) => {
   const [cartItems, setCartItems] = useState(getDefaultCart());
   const [payAumount, setPayAumount] = useState(0);
 
-  const [products, setProducts] = useState([]);
+  const [productos, setProductos] = useState([]);
   useEffect(() => {
-    getProducts();
+    getProductos();
   }, []);
 
   const [logged, setLogged] = useState(0);
@@ -28,16 +28,18 @@ export const ShopContextProvider = (props) => {
   const [admin, setAdmin] = useState(false);
   const AdminChanger = (value) => setAdmin(value);
 
-  const getProducts = async () => {
+  const getProductos = async () => {
     const res = await axios.get(URL);
-    setProducts(res.data);
+    setProductos(res.data);
   };
 
   const getTotalCartAmount = () => {
     let totalAmount = 0;
     for (const item in cartItems) {
       if (cartItems[item] > 0) {
-        let itemInfo = products.find((product) => product.id === Number(item));
+        let itemInfo = productos.find(
+          (producto) => producto.id === Number(item)
+        );
         totalAmount += cartItems[item] * itemInfo.precio;
       }
     }

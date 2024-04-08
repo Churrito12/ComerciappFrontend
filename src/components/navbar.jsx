@@ -6,6 +6,11 @@ const navbar = () => {
   return (
     <div>
       <div className="botonesMenu">
+        <Link to={"/shop"} className="botonLink">
+          <Button className="botonMenu" size="lg">
+            Ventas
+          </Button>
+        </Link>
         <Link to={"/"} className="botonLink">
           <Button className="botonMenu" size="lg">
             Ventas
@@ -28,7 +33,7 @@ const navbar = () => {
         </Link>
         <Link to={"/actualizarPreciosProveedor"} className="botonLink">
           <Button className="botonMenu" size="lg">
-            Precios por proveedor
+            P2recios por proveedor
           </Button>
         </Link>
         <Link className="botonLink">

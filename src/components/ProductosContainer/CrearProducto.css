@@ -1,0 +1,17 @@
+.CrearBoton > button {
+  margin-top: 1rem;
+  display: inline-block;
+  padding: 5px 10px;
+  text-decoration: none;
+  color: #333;
+  background-color: #f5f5f5;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.CrearBoton > button:hover {
+  background-color: #e0e0e0;
+  color: #222;
+}
