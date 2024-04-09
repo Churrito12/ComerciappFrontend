@@ -9,6 +9,10 @@ import ActualizarPrecioProveedor from "./components/ProductosContainer/Actualiza
 import { ShopContextProvider } from "./context/shop-context.jsx";
 import { Shop } from "./pages/Shop/shop.jsx";
 import { ShopAddtoCart } from "./pages/ShopAddToCart/shopAddtoCart.jsx";
+import Register from "./pages/register/register.jsx";
+import Login from "./pages/login/login.jsx";
+import { Cart } from "./pages/cart/cart.jsx";
+import Navbar2 from "./components/navbar2.jsx";
 
 const App = () => {
   return (
@@ -16,7 +20,11 @@ const App = () => {
       <ShopContextProvider>
         <BrowserRouter>
           <Navbar />
+
           <Routes>
+            <Route exact path="/cart" element={<Cart />}></Route>
+            <Route exact path="/register" element={<Register />}></Route>
+            <Route exact path="/login" element={<Login />}></Route>
             <Route exact path="/" element={<Shop />}></Route>
             <Route exact path="/shop" element={<ShopAddtoCart />}></Route>
             <Route
@@ -50,6 +58,7 @@ const App = () => {
               element={<ActualizarPrecioProveedor />}
             ></Route>
           </Routes>
+          <Cart />
         </BrowserRouter>
       </ShopContextProvider>
     </div>

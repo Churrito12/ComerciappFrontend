@@ -1,5 +1,6 @@
 import Button from "react-bootstrap/Button";
 import { Link } from "react-router-dom";
+import { ShopContext } from "../context/shop-context";
 import "./navbar.css";
 
 const navbar = () => {
@@ -11,11 +12,7 @@ const navbar = () => {
             Ventas
           </Button>
         </Link>
-        <Link to={"/"} className="botonLink">
-          <Button className="botonMenu" size="lg">
-            Ventas
-          </Button>
-        </Link>
+
         <Link to={"/mostrarproductos"} className="botonLink">
           <Button className="botonMenu" size="lg">
             Ver Stock
@@ -33,10 +30,10 @@ const navbar = () => {
         </Link>
         <Link to={"/actualizarPreciosProveedor"} className="botonLink">
           <Button className="botonMenu" size="lg">
-            P2recios por proveedor
+            Precios por proveedor
           </Button>
         </Link>
-        <Link className="botonLink">
+        <Link to={"/login"} className="botonLink">
           <Button className="botonMenu" size="lg">
             Usuarios
           </Button>
