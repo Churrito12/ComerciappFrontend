@@ -1,45 +1,53 @@
-import Button from "react-bootstrap/Button";
 import { Link } from "react-router-dom";
-import { ShopContext } from "../context/shop-context";
 import "./navbar.css";
+import React, { useContext } from "react";
+import { ShoppingCart } from "@phosphor-icons/react";
+import { ShopContext } from "../context/shop-context";
 
-const navbar = () => {
+export const Navbar = () => {
+  const context = useContext(ShopContext);
   return (
     <div>
-      <div className="botonesMenu">
-        <Link to={"/shop"} className="botonLink">
-          <Button className="botonMenu" size="lg">
-            Ventas
-          </Button>
-        </Link>
-
-        <Link to={"/mostrarproductos"} className="botonLink">
-          <Button className="botonMenu" size="lg">
-            Ver Stock
-          </Button>
-        </Link>
-        <Link to={"/crearProducto"} className="botonLink">
-          <Button className="botonMenu" size="lg">
-            Añadir producto
-          </Button>
-        </Link>
-        <Link to={"/actualizarPrecios"} className="botonLink">
-          <Button className="botonMenu" size="lg">
-            Cambiar precios porcentual
-          </Button>
-        </Link>
-        <Link to={"/actualizarPreciosProveedor"} className="botonLink">
-          <Button className="botonMenu" size="lg">
-            Precios por proveedor
-          </Button>
-        </Link>
-        <Link to={"/login"} className="botonLink">
-          <Button className="botonMenu" size="lg">
-            Usuarios
-          </Button>
-        </Link>
+      <div className="navbar">
+        {!context.admin ? (
+          !context.logged ? (
+            <div className="links">
+              <Link to="/"> Ventas </Link>
+              <Link to="/login"> Usuarios</Link>
+              <Link to="/mostrarProductos">Ver stock</Link>
+              <Link to="/login">
+                <ShoppingCart size={30} />
+              </Link>
+            </div>
+          ) : (
+            <div className="linksUsuario">
+              <Link to="/shop"> Ventas </Link>
+              <Link to="/login"> Usuarios</Link>
+              <Link to="/mostrarProductos">Ver stock</Link>
+              <Link to="/cart">
+                <ShoppingCart size={30} />
+              </Link>
+            </div>
+          )
+        ) : (
+          <div className="linksAdmin">
+            <Link to="/"> Ventas </Link>
+            <Link to="/login"> Usuarios</Link>
+            <Link to="/mostrarProductosAdmin">Ver stock</Link>
+            <Link to="/Cart" className="links">
+              Carrito
+            </Link>
+            <Link to="/actualizarPrecios" className="links">
+              Cambiar precios
+            </Link>
+            <Link to="/actualizarPreciosProveedor" className="links">
+              Precios Proveedor
+            </Link>
+          </div>
+        )}
       </div>
     </div>
   );
 };
-export default navbar;
+
+export default Navbar;

@@ -14,21 +14,18 @@ const Login = () => {
     navigate(`/register`);
   };
 
-  const navigateLogin = () => {
-    navigate(`/login`);
-  };
-
   const navigateShopAddtoCart = () => {
     navigate(`/shop`);
   };
 
   const navigateEditInventory = () => {
-    navigate(`/editInventory`);
+    navigate(`/mostrarProductosAdmin`);
   };
 
   const [entrada, setEntrada] = useState("");
   const [entradaP, setEntradaP] = useState("");
   const [users, setUsers] = useState([]);
+  const [error, setError] = useState("");
 
   useEffect(() => {
     getUsers();
@@ -40,39 +37,39 @@ const Login = () => {
   };
 
   const compare = () => {
-    if (users.find((e) => e.user_name === entrada && e.password === entradaP)) {
-      return true;
+    return users.some(
+      (user) => user.user_name === entrada && user.password === entradaP
+    );
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (compare()) {
+      if (entrada === "admin") {
+        navigateEditInventory();
+        context.AdminChanger(true);
+      } else {
+        context.AdminChanger(false);
+        navigateShopAddtoCart();
+      }
+      context.loggedChanger(true);
     } else {
-      return false;
+      setError("Datos incorrectos. Por favor, inténtalo de nuevo.");
     }
   };
 
   return (
     <div className="login-form">
       <h2>Iniciar Sesión</h2>
-      <form
-        onSubmit={(e) => {
-          e.preventDefault();
-          if (compare()) {
-            if (entrada === "admin") {
-              navigateEditInventory();
-              context.AdminChanger(true);
-            } else {
-              navigateShopAddtoCart();
-            }
-            context.loggedChanger(true);
-          } else {
-            navigateLogin();
-          }
-        }}
-      >
+      {error && <p className="error-message">{error}</p>}
+      <form onSubmit={handleSubmit}>
         <input
           value={entrada}
           onChange={(e) => setEntrada(e.target.value)}
           type="text"
           name="user"
           id="user"
-          placeholder="user"
+          placeholder="Nombre de usuario"
         />
         <input
           value={entradaP}
@@ -80,11 +77,11 @@ const Login = () => {
           type="password"
           name="pass"
           id="pass"
-          placeholder="password"
+          placeholder="Contraseña"
         />
-        <input type="submit" className="btn-login" value="Login" />
+        <input type="submit" className="btn-login" value="Aceptar" />
       </form>
-      <div className="btn-register" onClick={navigateRegister}>
+      <div href="register" className="btn-register" onClick={navigateRegister}>
         Registrarse
       </div>
     </div>

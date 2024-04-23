@@ -22,6 +22,26 @@
   margin-left: 20px;
   font-size: 18px;
 }
+.linksAdmin {
+  display: flex;
+  align-items: center;
+}
+.linksAdmin a {
+  text-decoration: none;
+  color: white;
+  margin-left: 20px;
+  font-size: 18px;
+}
+.linksUsuario {
+  display: flex;
+  align-items: center;
+}
+.linksUsuario a {
+  text-decoration: none;
+  color: white;
+  margin-left: 20px;
+  font-size: 18px;
+}
 .botonesMenu {
   display: flex;
   justify-content: space-between;
@@ -33,26 +53,13 @@
   margin: 0 10px;
 }
 .botonMenu {
-  background-color: white !important;
-  color: black !important;
-  border-color: black !important;
+  background-color: white;
+  color: black;
+  border-color: black;
   cursor: pointer;
   transition: all 0.3s ease;
 
   width: auto;
-}
-
-.botonMenu:hover {
-  background-color: white !important;
-  border-color: black !important;
-  color: black !important;
-  transform: scale(1.05);
-}
-
-.botonMenu:active {
-  background-color: white !important;
-  border-color: black !important;
-  color: black !important;
 }
 
 @media (max-width: 970px) {

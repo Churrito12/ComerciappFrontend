@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
-import "./MostrarProducto.css";
+import "./MostrarProductosAdmin.css";
 
 const URL = "http://localhost:8000/productos/";
 
-const MostrarProductos = () => {
+const MostrarProductosAdmin = () => {
   const [productos, setProductos] = useState([]);
   const [filtroNombre, setFiltroNombre] = useState("");
   const [filtroProveedor, setFiltroProveedor] = useState("");
@@ -20,15 +20,6 @@ const MostrarProductos = () => {
       setProductos(res.data);
     } catch (error) {
       console.error("Error al obtener los productos:", error);
-    }
-  };
-
-  const deleteProducto = async (id) => {
-    try {
-      await axios.delete(`${URL}/${id}`);
-      obtenerProductos();
-    } catch (error) {
-      console.error(`Error al eliminar el producto con id ${id}:`, error);
     }
   };
 
@@ -86,6 +77,17 @@ const MostrarProductos = () => {
                   <td>{producto.stockMax}</td>
                   <td>{producto.stockMin}</td>
                   <td>${producto.precio}</td>
+                  <td>
+                    <Link to={`/editar/${producto.id}`} className="EditarLink">
+                      Editar
+                    </Link>
+                    <button
+                      onClick={() => deleteProducto(producto.id)}
+                      className="EliminarBoton"
+                    >
+                      Eliminar
+                    </button>
+                  </td>
                 </tr>
               ))}
             </tbody>
@@ -102,4 +104,4 @@ const MostrarProductos = () => {
   );
 };
 
-export default MostrarProductos;
+export default MostrarProductosAdmin;

@@ -51,10 +51,14 @@ export const ShopContextProvider = (props) => {
     await axios
       .get("http://localhost:8000/productos/book/" + itemId + "?f=book")
       .then(({ data }) => {
-        data === "Booked"
-          ? setCartItems((prev) => ({ ...prev, [itemId]: prev[itemId] + 1 }))
-          : void 0;
-        data === "Stockout" ? alert("Empty product") : void 0;
+        if (data === "Booked") {
+          setCartItems((prevCartItems) => ({
+            ...prevCartItems,
+            [itemId]: prevCartItems[itemId] + 1,
+          }));
+        } else if (data === "Stockout") {
+          alert("Empty product");
+        }
       })
       .catch((error) => {
         console.log(error.message);

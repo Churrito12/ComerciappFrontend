@@ -17,53 +17,28 @@ export const Cart = () => {
 
   const [productos, setProductos] = useState([]);
   useEffect(() => {
-    getProductos();
+    getProducts();
   }, []);
 
-  const getProductos = async () => {
+  const getProducts = async () => {
     const res = await axios.get(URL);
     setProductos(res.data);
-  };
-
-  const buy = async (e) => {
-    e.preventDefault();
-    console.log(cartItems);
-    await axios
-      .put(URL + "buy", {
-        1: cartItems[1],
-        2: cartItems[2],
-        3: cartItems[3],
-        4: cartItems[4],
-        5: cartItems[5],
-        6: cartItems[6],
-        7: cartItems[7],
-        8: cartItems[8],
-        9: cartItems[9],
-        10: cartItems[10],
-      })
-      .then((res) => {
-        alert(res);
-      })
-      .catch((err) => {
-        alert(err.message);
-      });
-    context.setPayAumount(totalAmount);
   };
 
   return (
     <div className="cart">
       <div>
-        <h1> Compras</h1>
+        <h1> Your Cart Items</h1>
       </div>
       <div className="cartItems">
-        {productos.map((producto) => {
-          if (cartItems[producto.id] !== 0) {
-            return <CartItem key={producto.id} data={producto} />;
+        {productos.map((product) => {
+          if (cartItems[productos.id] !== 0) {
+            {
+            }
+            return <CartItem data={product} />;
           }
-          return null;
         })}
       </div>
-
       {totalAmount > 0 ? (
         <div className="checkout">
           <p> Subtotal: ${totalAmount}</p>
@@ -73,7 +48,7 @@ export const Cart = () => {
           <button onClick={buy}> Checkout </button>
         </div>
       ) : (
-        <h1> Vacio </h1>
+        <h1> Your Cart is Empty </h1>
       )}
     </div>
   );

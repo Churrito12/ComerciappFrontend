@@ -12,8 +12,7 @@ import { ShopAddtoCart } from "./pages/ShopAddToCart/shopAddtoCart.jsx";
 import Register from "./pages/register/register.jsx";
 import Login from "./pages/login/login.jsx";
 import { Cart } from "./pages/cart/cart.jsx";
-import Navbar2 from "./components/navbar2.jsx";
-
+import MostrarProductosAdmin from "./components/ProductosContainer/MostrarProductosAdmin.jsx";
 const App = () => {
   return (
     <div className="App">
@@ -22,15 +21,20 @@ const App = () => {
           <Navbar />
 
           <Routes>
+            <Route exact path="/" element={<Shop />}></Route>
+            <Route exact path="/shop" element={<ShopAddtoCart />}></Route>
             <Route exact path="/cart" element={<Cart />}></Route>
             <Route exact path="/register" element={<Register />}></Route>
             <Route exact path="/login" element={<Login />}></Route>
-            <Route exact path="/" element={<Shop />}></Route>
-            <Route exact path="/shop" element={<ShopAddtoCart />}></Route>
             <Route
               exact
               path="/mostrarProductos"
               element={<MostrarProductos />}
+            ></Route>
+            <Route
+              exact
+              path="/mostrarProductosAdmin"
+              element={<MostrarProductosAdmin />}
             ></Route>
             <Route
               exact
@@ -58,7 +62,6 @@ const App = () => {
               element={<ActualizarPrecioProveedor />}
             ></Route>
           </Routes>
-          <Cart />
         </BrowserRouter>
       </ShopContextProvider>
     </div>

@@ -40,7 +40,7 @@ const Register = () => {
 
   return (
     <div className="register-form">
-      <h2>register</h2>
+      <h2>Registro</h2>
       <form onSubmit={store} action="/auth" method="post">
         {" "}
         {}
@@ -54,7 +54,7 @@ const Register = () => {
           type="text"
           name="user"
           id="user"
-          placeholder="user"
+          placeholder="Nombre de usuario"
         />
         <input
           value={password}
@@ -62,9 +62,9 @@ const Register = () => {
           type="password"
           name="pass"
           id="pass"
-          placeholder="password"
+          placeholder="Contraseña"
         />
-        <input type="submit" className="btn-login" value="register" />
+        <input type="submit" className="btn-login" value="Registrarse" />
       </form>
     </div>
   );
