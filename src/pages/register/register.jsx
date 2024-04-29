@@ -9,7 +9,6 @@ const URL = "http://localhost:8000/users";
 const Register = () => {
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
-
   const [users, setUsers] = useState([]);
   const navigate = useNavigate();
   const navigateLogin = () => {

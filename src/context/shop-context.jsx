@@ -16,7 +16,6 @@ const getDefaultCart = () => {
 export const ShopContextProvider = (props) => {
   const [cartItems, setCartItems] = useState(getDefaultCart());
   const [payAumount, setPayAumount] = useState(0);
-
   const [productos, setProductos] = useState([]);
   useEffect(() => {
     getProductos();
@@ -33,6 +32,31 @@ export const ShopContextProvider = (props) => {
     setProductos(res.data);
   };
 
+  const addToCart = (productId) => {
+    const updatedCart = { ...cartItems };
+
+    if (updatedCart[productId]) {
+      updatedCart[productId] += 1;
+    } else {
+      updatedCart[productId] = 1;
+    }
+
+    setCartItems(updatedCart);
+  };
+  const removeFromCart = (productId) => {
+    const updatedCart = { ...cartItems };
+
+    if (updatedCart[productId] && updatedCart[productId] > 0) {
+      updatedCart[productId] -= 1;
+    }
+
+    if (updatedCart[productId] === 0) {
+      delete updatedCart[productId];
+    }
+
+    setCartItems(updatedCart);
+  };
+
   const getTotalCartAmount = () => {
     let totalAmount = 0;
     for (const item in cartItems) {
@@ -43,55 +67,24 @@ export const ShopContextProvider = (props) => {
         totalAmount += cartItems[item] * itemInfo.precio;
       }
     }
-
     return totalAmount;
   };
 
-  const addToCart = async (itemId) => {
-    await axios
-      .get("http://localhost:8000/productos/book/" + itemId + "?f=book")
-      .then(({ data }) => {
-        if (data === "Booked") {
-          setCartItems((prevCartItems) => ({
-            ...prevCartItems,
-            [itemId]: prevCartItems[itemId] + 1,
-          }));
-        } else if (data === "Stockout") {
-          alert("Empty product");
-        }
-      })
-      .catch((error) => {
-        console.log(error.message);
-      });
-  };
-
-  const removeFromCart = async (itemId) => {
-    await axios
-      .get("http://localhost:8000/productos/book/" + itemId + "?f=unbook")
-      .then(({ data }) => {
-        data === "Unbooked"
-          ? setCartItems((prev) => ({ ...prev, [itemId]: prev[itemId] - 1 }))
-          : void 0;
-      })
-      .catch((error) => {
-        console.log(error.message);
-      });
-  };
-
-  const contextValue = {
-    cartItems,
-    addToCart,
-    removeFromCart,
-    getTotalCartAmount,
-    loggedChanger,
-    logged,
-    AdminChanger,
-    admin,
-    payAumount,
-    setPayAumount,
-  };
   return (
-    <ShopContext.Provider value={contextValue}>
+    <ShopContext.Provider
+      value={{
+        removeFromCart,
+        cartItems,
+        addToCart,
+        getTotalCartAmount,
+        payAumount,
+        setPayAumount,
+        logged,
+        loggedChanger,
+        admin,
+        AdminChanger,
+      }}
+    >
       {props.children}
     </ShopContext.Provider>
   );

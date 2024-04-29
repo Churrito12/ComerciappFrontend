@@ -25,17 +25,41 @@ export const Cart = () => {
     setProductos(res.data);
   };
 
+  const buy = async (e) => {
+    e.preventDefault();
+    console.log(cartItems);
+    await axios
+      .put(URL + "buy", {
+        1: cartItems[1],
+        2: cartItems[2],
+        3: cartItems[3],
+        4: cartItems[4],
+        5: cartItems[5],
+        6: cartItems[6],
+        7: cartItems[7],
+        8: cartItems[8],
+        9: cartItems[9],
+        10: cartItems[10],
+      })
+      .then((res) => {
+        alert(res);
+      })
+      .catch((err) => {
+        alert(err.message);
+      });
+    context.setPayAumount(totalAmount);
+    navigate("/stripe");
+  };
   return (
     <div className="cart">
       <div>
-        <h1> Your Cart Items</h1>
+        <h1>Carrito</h1>
       </div>
       <div className="cartItems">
-        {productos.map((product) => {
-          if (cartItems[productos.id] !== 0) {
-            {
-            }
-            return <CartItem data={product} />;
+        {productos.map((producto) => {
+          const quantityInCart = cartItems[producto.id] || 0;
+          if (quantityInCart > 0) {
+            return <CartItem key={producto.id} data={producto} />;
           }
         })}
       </div>
@@ -43,12 +67,12 @@ export const Cart = () => {
         <div className="checkout">
           <p> Subtotal: ${totalAmount}</p>
 
-          <button onClick={() => navigate("/shop")}> Continue Shopping</button>
+          <button onClick={() => navigate("/shop")}> Seguir Comprando</button>
 
-          <button onClick={buy}> Checkout </button>
+          <button onClick={buy}> Pagar </button>
         </div>
       ) : (
-        <h1> Your Cart is Empty </h1>
+        <h2> El carrito esta vacio </h2>
       )}
     </div>
   );
