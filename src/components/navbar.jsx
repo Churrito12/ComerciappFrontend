@@ -31,7 +31,7 @@ export const Navbar = () => {
           )
         ) : (
           <div className="linksAdmin">
-            <Link to="/"> Ventas </Link>
+            <Link to="/shop"> Ventas </Link>
             <Link to="/login"> Usuarios</Link>
             <Link to="/mostrarProductosAdmin">Ver stock</Link>
             <Link to="/Cart" className="links">

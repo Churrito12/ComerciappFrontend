@@ -1,7 +1,7 @@
 import React from "react";
 
-export const Producto = (props) => {
-  const { nombre, precio } = props.data;
+export const Producto = (producto) => {
+  const { nombre, precio } = producto.data;
   return (
     <div className="producto">
       <div className="descripcion">

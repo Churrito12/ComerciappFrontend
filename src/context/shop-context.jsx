@@ -77,8 +77,7 @@ export const ShopContextProvider = (props) => {
         cartItems,
         addToCart,
         getTotalCartAmount,
-        payAumount,
-        setPayAumount,
+
         logged,
         loggedChanger,
         admin,
