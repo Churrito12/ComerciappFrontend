@@ -56,7 +56,9 @@ export const ShopContextProvider = (props) => {
 
     setCartItems(updatedCart);
   };
-
+  const clearCart = () => {
+    setCartItems(getDefaultCart());
+  };
   const getTotalCartAmount = () => {
     let totalAmount = 0;
     for (const item in cartItems) {
@@ -73,11 +75,13 @@ export const ShopContextProvider = (props) => {
   return (
     <ShopContext.Provider
       value={{
+        clearCart,
         removeFromCart,
         cartItems,
         addToCart,
         getTotalCartAmount,
-
+        payAumount,
+        setPayAumount,
         logged,
         loggedChanger,
         admin,
