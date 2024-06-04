@@ -8,65 +8,56 @@ import { initMercadoPago, Wallet } from "@mercadopago/sdk-react";
 
 const URL = "http://localhost:8000/productos/";
 
-export const Cart = () => {
+export const mercadoPago = () => {
   initMercadoPago("TEST-f05d0005-7a1d-417c-8fdc-2fa5103aafc7", {
     locale: "es-AR",
   });
+};
 
-  const { cartItems, getTotalCartAmount, clearCart } = useContext(ShopContext);
+export const Cart = () => {
+  const { cartItems, getTotalCartAmount, setPayAumount, clearCart } =
+    useContext(ShopContext);
   const totalAmount = getTotalCartAmount();
   const navigate = useNavigate();
-  const [productos, setProductos] = useState([]);
   const [preferenceId, setPreferenceId] = useState(null);
+  const [productos, setProductos] = useState([]);
 
   useEffect(() => {
-    getProducts();
-    crearPreference();
+    getProductos();
   }, []);
 
-  const getProducts = async () => {
-    try {
-      const res = await axios.get(URL);
-      setProductos(res.data);
-    } catch (error) {
-      console.error("Error fetching products:", error);
-    }
+  const getProductos = async () => {
+    const res = await axios.get(URL);
+    setProductos(res.data);
   };
 
+  const buy = async (e) => {
+    e.preventDefault();
+
+    try {
+      const response = await axios.put(URL + "comprar", cartItems);
+      alert("Compra exitosa: " + response.data);
+
+      setPayAumount(totalAmount);
+      clearCart();
+      navigate("/shop");
+    } catch (err) {
+      console.error("Error durante la compra:", err.message);
+      alert("Error durante la compra: " + err.message);
+    }
+  };
   const crearPreference = async () => {
     try {
-      const response = await axios.post("http://localhost:8000/payment", {
+      const response = await axios.put("http://localhost:8000/payment", {
         title: "prueba",
         quantity: "1",
-        price: totalAmount,
+        price: "1",
       });
       setPreferenceId(response.data.id);
     } catch (error) {
-      console.log(error);
+      console.error("Error creando la preferencia:", error);
     }
   };
-
-  const handlePaymentSuccess = async () => {
-    try {
-      await axios.put(URL + "comprar", cartItems);
-      clearCart();
-      alert("Pago exitoso y stock actualizado");
-    } catch (error) {
-      alert("Error actualizando el stock");
-      console.error(error);
-    }
-  };
-
-  const handlePurchase = async () => {
-    try {
-      await axios.post("http://localhost:8000/comprar", cartItems);
-      handlePaymentSuccess();
-    } catch (error) {
-      alert("Error al realizar la compra");
-      console.error(error);
-    }
-  };
-
   return (
     <div className="cart">
       <div>
@@ -84,7 +75,7 @@ export const Cart = () => {
         <div className="checkout">
           <p>Total a pagar: ${totalAmount}</p>
           <button onClick={() => navigate("/shop")}>Seguir Comprando</button>
-          <button onClick={handlePaymentSuccess}>Pagar</button>
+          <button onClick={buy}>Pagar</button>
           {preferenceId && (
             <div>
               <Wallet

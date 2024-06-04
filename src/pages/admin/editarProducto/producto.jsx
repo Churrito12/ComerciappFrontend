@@ -2,7 +2,7 @@ import React from "react";
 import { useState } from "react";
 import axios from "axios";
 
-const URL = "http://localhost:8000/productOs/";
+const URL = "http://localhost:8000/productos/";
 
 export const Producto = (props) => {
   const { id, nombre, precio, stockMax, stockMin } = props.data;

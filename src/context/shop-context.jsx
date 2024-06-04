@@ -32,32 +32,50 @@ export const ShopContextProvider = (props) => {
     setProductos(res.data);
   };
 
-  const addToCart = (productId) => {
-    const updatedCart = { ...cartItems };
+  const addToCart = async (itemId) => {
+    try {
+      const response = await axios.get(
+        `http://localhost:8000/productos/book/${itemId}?f=book`
+      );
+      const data = response.data;
 
-    if (updatedCart[productId]) {
-      updatedCart[productId] += 1;
-    } else {
-      updatedCart[productId] = 1;
+      if (data === "Booked") {
+        const updatedCart = { ...cartItems };
+
+        if (updatedCart[itemId]) {
+          updatedCart[itemId] += 1;
+        } else {
+          updatedCart[itemId] = 1;
+        }
+
+        setCartItems(updatedCart);
+      } else if (data === "Stockout") {
+        alert("No hay más stock disponible.");
+      }
+    } catch (error) {
+      console.error("Error al agregar al carrito:", error.message);
     }
-
-    setCartItems(updatedCart);
   };
-  const removeFromCart = (productId) => {
-    const updatedCart = { ...cartItems };
 
-    if (updatedCart[productId] && updatedCart[productId] > 0) {
-      updatedCart[productId] -= 1;
+  const removeFromCart = async (itemId) => {
+    try {
+      const response = await axios.get(
+        `http://localhost:8000/productos/book/${itemId}?f=unbook`
+      );
+      const data = response.data;
+
+      if (data === "Unbooked") {
+        const updatedCart = { ...cartItems };
+
+        if (updatedCart[itemId] && updatedCart[itemId] > 0) {
+          updatedCart[itemId] -= 1;
+        }
+
+        setCartItems(updatedCart);
+      }
+    } catch (error) {
+      console.error("Error al remover del carrito:", error.message);
     }
-
-    if (updatedCart[productId] === 0) {
-      delete updatedCart[productId];
-    }
-
-    setCartItems(updatedCart);
-  };
-  const clearCart = () => {
-    setCartItems(getDefaultCart());
   };
   const getTotalCartAmount = () => {
     let totalAmount = 0;
@@ -72,22 +90,25 @@ export const ShopContextProvider = (props) => {
     return totalAmount;
   };
 
+  const clearCart = () => {
+    setCartItems(getDefaultCart());
+  };
+
+  const contextValue = {
+    clearCart,
+    cartItems,
+    addToCart,
+    removeFromCart,
+    getTotalCartAmount,
+    loggedChanger,
+    logged,
+    AdminChanger,
+    admin,
+    payAumount,
+    setPayAumount,
+  };
   return (
-    <ShopContext.Provider
-      value={{
-        clearCart,
-        removeFromCart,
-        cartItems,
-        addToCart,
-        getTotalCartAmount,
-        payAumount,
-        setPayAumount,
-        logged,
-        loggedChanger,
-        admin,
-        AdminChanger,
-      }}
-    >
+    <ShopContext.Provider value={contextValue}>
       {props.children}
     </ShopContext.Provider>
   );
