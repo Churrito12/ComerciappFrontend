@@ -32,20 +32,34 @@ export const Cart = () => {
   };
 
   const buy = async (e) => {
-    e.preventDefault();
-
     try {
-      const response = await axios.put(URL + "comprar", cartItems);
-      alert("Compra exitosa: " + response.data);
+      // Realizar la solicitud al backend para actualizar el stock
+      const response = await axios.put(
+        "http://localhost:8000/productos/comprar",
+        {
+          cartItems: cartItems, // Envía el objeto cartItems al backend
+        }
+      );
 
-      setPayAumount(totalAmount);
-      clearCart();
-      navigate("/shop");
-    } catch (err) {
-      console.error("Error durante la compra:", err.message);
-      alert("Error durante la compra: " + err.message);
+      // Imprimir la respuesta del servidor en la consola
+      console.log(cartItems);
+
+      // Verificar la respuesta del backend
+      if (response.status === 200) {
+        alert("Compra exitosa");
+        clearCart(); // Limpiar el carrito localmente
+
+        // Refrescar los datos del producto
+        getProductos();
+      } else {
+        alert("Error durante la compra");
+      }
+    } catch (error) {
+      console.error("Error durante la compra:", error.message);
+      alert("Error durante la compra: " + error.message);
     }
   };
+
   const crearPreference = async () => {
     try {
       const response = await axios.put("http://localhost:8000/payment", {
