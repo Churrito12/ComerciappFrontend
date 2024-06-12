@@ -93,7 +93,7 @@ const CrearProducto = () => {
             onChange={(e) => setStockMax(e.target.value)}
           />
         </Form.Group>
-        <Button variant="primary" type="submit">
+        <Button className="btn-aceptar" type="submit">
           Aceptar
         </Button>
         {error && <p>{error}</p>}

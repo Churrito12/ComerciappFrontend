@@ -23,15 +23,6 @@ const MostrarProductos = () => {
     }
   };
 
-  const deleteProducto = async (id) => {
-    try {
-      await axios.delete(`${URL}/${id}`);
-      obtenerProductos();
-    } catch (error) {
-      console.error(`Error al eliminar el producto con id ${id}:`, error);
-    }
-  };
-
   const handleFiltroNombreChange = (e) => {
     setFiltroNombre(e.target.value);
   };
@@ -54,48 +45,57 @@ const MostrarProductos = () => {
     <div className="GridContainer">
       <div className="row">
         <div className="col">
-          <input
-            type="text"
-            value={filtroNombre}
-            onChange={handleFiltroNombreChange}
-            placeholder="Buscar por nombre..."
-          />
-          <input
-            type="text"
-            value={filtroProveedor}
-            onChange={handleFiltroProveedorChange}
-            placeholder="Buscar por proveedor..."
-          />
-          <table className="tabla">
-            <thead className="primera-tabla">
-              <tr>
-                <th>Nombre</th>
-                <th>Proveedor</th>
-                <th>Stock</th>
-                <th>Máx</th>
-                <th>Mín</th>
-                <th>Precio</th>
-              </tr>
-            </thead>
-            <tbody>
-              {productosFiltrados.map((producto) => (
-                <tr key={producto.id}>
-                  <td>{producto.nombre}</td>
-                  <td>{producto.proveedor}</td>
-                  <td>{producto.stock}</td>
-                  <td>{producto.stockMax}</td>
-                  <td>{producto.stockMin}</td>
-                  <td>${producto.precio}</td>
+          <div className="filter-container">
+            <input
+              className="filtroA"
+              type="text"
+              value={filtroNombre}
+              onChange={handleFiltroNombreChange}
+              placeholder="Buscar por nombre..."
+            />
+            <input
+              className="filtroB"
+              type="text"
+              value={filtroProveedor}
+              onChange={handleFiltroProveedorChange}
+              placeholder="Buscar por proveedor..."
+            />
+          </div>
+          <div className="button-container">
+            <Link to="/CrearProducto" className="CrearBoton">
+              <button>Crear</button>
+            </Link>
+            <Link to="/" className="VolverBoton">
+              <button>Volver</button>
+            </Link>
+          </div>
+
+          <div className="tabla-container">
+            <table className="tabla">
+              <thead className="primera-tabla">
+                <tr>
+                  <th>Nombre</th>
+                  <th>Proveedor</th>
+                  <th>Stock</th>
+                  <th>Máx</th>
+                  <th>Mín</th>
+                  <th>Precio</th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
-          <Link to="/CrearProducto" className="CrearBoton">
-            <button>Crear</button>
-          </Link>
-          <Link to="/" className="VolverBoton">
-            <button>Volver</button>
-          </Link>
+              </thead>
+              <tbody>
+                {productosFiltrados.map((producto) => (
+                  <tr key={producto.id}>
+                    <td>{producto.nombre}</td>
+                    <td>{producto.proveedor}</td>
+                    <td>{producto.stock}</td>
+                    <td>{producto.stockMax}</td>
+                    <td>{producto.stockMin}</td>
+                    <td>${producto.precio}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
         </div>
       </div>
     </div>

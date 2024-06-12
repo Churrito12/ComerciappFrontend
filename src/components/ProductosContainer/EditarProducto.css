@@ -1,0 +1,43 @@
+/* Estilos generales */
+.EditarProductoContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 45rem;
+  padding: 1rem;
+}
+
+/* Estilos específicos para el formulario */
+.EditarProductoContainer .form-control {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 0.5rem;
+  width: 100%;
+  font-size: 1rem;
+  margin-bottom: 1rem;
+}
+
+.EditarProductoContainer .form-label {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+  width: 20rem;
+  display: inline-block;
+}
+
+/* Estilo para el botón Aceptar */
+.EditarProductoContainer .btn-aceptar {
+  margin-top: 1rem;
+  padding: 10px 20px;
+  text-decoration: none;
+  color: #fff;
+  background-color: #5cb85c;
+  border: 1px solid #4cae4c;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.EditarProductoContainer .btn-aceptar:hover {
+  background-color: #4cae4c;
+}

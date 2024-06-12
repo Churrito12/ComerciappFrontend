@@ -1,8 +1,6 @@
-import axios from "axios";
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import Form from "react-bootstrap/Form";
-import Button from "react-bootstrap/Button";
+import axios from "axios";
 import "./EditarProducto.css";
 
 const URL = "http://localhost:8000/productos/";
@@ -56,67 +54,72 @@ const EditarProducto = () => {
   };
 
   return (
-    <div className="CrearProductoContainer">
-      <Form onSubmit={actualizar}>
-        <Form.Group className="mb-3" controlId="formBasicEmail">
-          <Form.Label>Producto</Form.Label>
-          <Form.Control
+    <div className="EditarProductoContainer">
+      <form onSubmit={actualizar}>
+        <div className="mb-3">
+          <label className="form-label">Producto</label>
+          <input
             type="text"
+            className="form-control"
             placeholder="Nombre"
             value={nombre}
             onChange={(e) => setNombre(e.target.value)}
           />
-        </Form.Group>
-        <Form.Group className="mb-3" controlId="formBasicEmail">
-          <Form.Label>Precio</Form.Label>
-          <Form.Control
+        </div>
+        <div className="mb-3">
+          <label className="form-label">Precio</label>
+          <input
             type="text"
+            className="form-control"
             placeholder="$"
             value={precio}
             onChange={(e) => setPrecio(e.target.value)}
           />
-        </Form.Group>
-        <Form.Group className="mb-3" controlId="formBasicEmail">
-          <Form.Label>Proveedor</Form.Label>
-          <Form.Control
+        </div>
+        <div className="mb-3">
+          <label className="form-label">Proveedor</label>
+          <input
             type="text"
+            className="form-control"
             placeholder=""
             value={proveedor}
             onChange={(e) => setProveedor(e.target.value)}
           />
-        </Form.Group>
-        <Form.Group className="mb-3" controlId="formBasicPassword">
-          <Form.Label>Stock</Form.Label>
-          <Form.Control
+        </div>
+        <div className="mb-3">
+          <label className="form-label">Stock</label>
+          <input
             type="text"
+            className="form-control"
             placeholder=""
             value={stock}
             onChange={(e) => setStock(e.target.value)}
           />
-        </Form.Group>
-        <Form.Group className="mb-3" controlId="formBasicPassword">
-          <Form.Label>Stock Mínimo</Form.Label>
-          <Form.Control
+        </div>
+        <div className="mb-3">
+          <label className="form-label">Stock Mínimo</label>
+          <input
             type="text"
+            className="form-control"
             placeholder=""
             value={stockMin}
             onChange={(e) => setStockMin(e.target.value)}
           />
-        </Form.Group>
-        <Form.Group className="mb-3" controlId="formBasicPassword">
-          <Form.Label>Stock Máximo</Form.Label>
-          <Form.Control
+        </div>
+        <div className="mb-3">
+          <label className="form-label">Stock Máximo</label>
+          <input
             type="text"
+            className="form-control"
             placeholder=""
             value={stockMax}
             onChange={(e) => setStockMax(e.target.value)}
           />
-        </Form.Group>
-
-        <Button variant="primary" type="submit">
+        </div>
+        <button className="btn-aceptar" type="submit">
           Aceptar
-        </Button>
-      </Form>
+        </button>
+      </form>
     </div>
   );
 };

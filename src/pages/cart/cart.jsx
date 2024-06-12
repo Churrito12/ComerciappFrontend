@@ -33,23 +33,17 @@ export const Cart = () => {
 
   const buy = async (e) => {
     try {
-      // Realizar la solicitud al backend para actualizar el stock
       const response = await axios.put(
         "http://localhost:8000/productos/comprar",
         {
-          cartItems: cartItems, // Envía el objeto cartItems al backend
+          cartItems: cartItems,
         }
       );
 
-      // Imprimir la respuesta del servidor en la consola
-      console.log(cartItems);
-
-      // Verificar la respuesta del backend
       if (response.status === 200) {
         alert("Compra exitosa");
-        clearCart(); // Limpiar el carrito localmente
+        clearCart();
 
-        // Refrescar los datos del producto
         getProductos();
       } else {
         alert("Error durante la compra");
