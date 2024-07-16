@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import "./EditarProducto.css";
 
@@ -47,7 +47,7 @@ const EditarProducto = () => {
         stockMax: parseInt(stockMax),
       };
       await axios.put(URL + id, updatedProducto);
-      navigate("/mostrarproductos");
+      navigate("/mostrarProductosAdmin");
     } catch (error) {
       setError("Error al actualizar el producto.");
     }
@@ -119,6 +119,9 @@ const EditarProducto = () => {
         <button className="btn-aceptar" type="submit">
           Aceptar
         </button>
+        <Link to="/mostrarProductosAdmin">
+          <button className="BtnVolver">Volver</button>
+        </Link>
       </form>
     </div>
   );

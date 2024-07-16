@@ -45,59 +45,73 @@ const MostrarProductosAdmin = () => {
     <div className="GridContainer">
       <div className="row">
         <div className="col">
-          <input
-            type="text"
-            value={filtroNombre}
-            onChange={handleFiltroNombreChange}
-            placeholder="Buscar por nombre..."
-          />
-          <input
-            type="text"
-            value={filtroProveedor}
-            onChange={handleFiltroProveedorChange}
-            placeholder="Buscar por proveedor..."
-          />
-          <table className="tabla">
-            <thead className="primera-tabla">
-              <tr>
-                <th>Nombre</th>
-                <th>Proveedor</th>
-                <th>Stock</th>
-                <th>Máx</th>
-                <th>Mín</th>
-                <th>Precio</th>
-              </tr>
-            </thead>
-            <tbody>
-              {productosFiltrados.map((producto) => (
-                <tr key={producto.id}>
-                  <td>{producto.nombre}</td>
-                  <td>{producto.proveedor}</td>
-                  <td>{producto.stock}</td>
-                  <td>{producto.stockMax}</td>
-                  <td>{producto.stockMin}</td>
-                  <td>${producto.precio}</td>
-                  <td>
-                    <Link to={`/editar/${producto.id}`} className="EditarLink">
-                      Editar
-                    </Link>
-                    <button
-                      onClick={() => deleteProducto(producto.id)}
-                      className="EliminarBoton"
-                    >
-                      Eliminar
-                    </button>
-                  </td>
+          <div className="filter-container">
+            <input
+              className="filtroA"
+              type="text"
+              value={filtroNombre}
+              onChange={handleFiltroNombreChange}
+              placeholder="Buscar por nombre..."
+            />
+            <input
+              className="filtroB"
+              type="text"
+              value={filtroProveedor}
+              onChange={handleFiltroProveedorChange}
+              placeholder="Buscar por proveedor..."
+            />
+          </div>
+          <div className="button-container">
+            <Link to="/CrearProducto" className="CrearBoton">
+              <button>Crear</button>
+            </Link>
+            <Link to="/shop" className="VolverBoton">
+              <button>Volver</button>
+            </Link>
+          </div>
+          <div className="tabla-container">
+            <table className="tabla">
+              <thead className="primera-tabla">
+                <tr>
+                  <th>Nombre</th>
+                  <th>Proveedor</th>
+                  <th>Stock</th>
+                  <th>Máx</th>
+                  <th>Mín</th>
+                  <th>Precio</th>
+                  <th>Opciones</th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
-          <Link to="/CrearProducto" className="CrearBoton">
-            <button>Crear</button>
-          </Link>
-          <Link to="/" className="VolverBoton">
-            <button>Volver</button>
-          </Link>
+              </thead>
+              <tbody>
+                {productosFiltrados.map((producto) => (
+                  <tr key={producto.id}>
+                    <td>{producto.nombre}</td>
+                    <td>{producto.proveedor}</td>
+                    <td>{producto.stock}</td>
+                    <td>{producto.stockMax}</td>
+                    <td>{producto.stockMin}</td>
+                    <td>${producto.precio}</td>
+                    <td>
+                      <div className="btnTabla">
+                        <Link
+                          to={`/editar/${producto.id}`}
+                          className="EditarBoton"
+                        >
+                          🖊
+                        </Link>
+                        <button
+                          onClick={() => deleteProducto(producto.id)}
+                          className="EliminarBoton"
+                        >
+                          🗑
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
         </div>
       </div>
     </div>

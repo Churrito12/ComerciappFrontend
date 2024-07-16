@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import "./ActualizarPrecioProveedor.css";
@@ -66,9 +66,12 @@ const ActualizarPrecioProveedor = () => {
             ))}
           </Form.Control>
         </Form.Group>
-        <Button variant="primary" type="submit">
+        <button className="BtnAceptar" type="submit">
           Aceptar
-        </Button>
+        </button>
+        <Link to="/mostrarProductosAdmin">
+          <button className="BtnVolver">Volver</button>
+        </Link>
       </Form>
     </div>
   );

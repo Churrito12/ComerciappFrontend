@@ -1,8 +1,8 @@
 import axios from "axios";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Form from "react-bootstrap/Form";
-import Button from "react-bootstrap/Button";
+
 import "./ActualizarPrecio.css";
 
 const URL = "http://localhost:8000/productos/";
@@ -18,7 +18,7 @@ const ActualizarPrecio = () => {
         porcentajeAumento: porcentajeAumento,
       });
 
-      navigate("/mostrarproductos");
+      navigate("/mostrarProductosAdmin");
     } catch (error) {
       console.error("Error al actualizar los precios:", error);
     }
@@ -27,18 +27,21 @@ const ActualizarPrecio = () => {
   return (
     <div className="CrearProductoContainer">
       <Form onSubmit={actualizarPrecios}>
-        <Form.Group className="mb-3" controlId="formBasicEmail">
-          <Form.Label>Porcentaje de aumento</Form.Label>
+        <Form.Group className="FormAumento" controlId="formBasicEmail">
+          <Form.Label>¿Cuanto desea aumentar?</Form.Label>
           <Form.Control
             type="text"
-            placeholder="Porcentaje"
+            placeholder="Ej: 10"
             value={porcentajeAumento}
             onChange={(e) => setPorcentajeAumento(e.target.value)}
           />
         </Form.Group>
-        <Button variant="primary" type="submit">
+        <button className="BtnAceptar" type="submit">
           Aceptar
-        </Button>
+        </button>
+        <Link to="/mostrarProductosAdmin">
+          <button className="BtnVolver">Volver</button>
+        </Link>
       </Form>
     </div>
   );

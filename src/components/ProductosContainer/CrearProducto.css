@@ -1,5 +1,6 @@
 /* Estilos generales */
 .CrearProductoContainer {
+  margin-top: 25vh;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -7,7 +8,7 @@
   padding: 1rem;
 }
 
-/* Estilos específicos para el formulario */
+/* Formulario */
 .CrearProductoContainer .form-control {
   border: 1px solid #ccc;
   border-radius: 5px;
@@ -25,11 +26,10 @@
   display: inline-block;
 }
 
-/* Estilo para los botones */
+/* Botones Volver y aceptar*/
 .CrearProductoContainer .btn-aceptar,
 .CrearProductoContainer .VolverBoton > button,
 .CrearProductoContainer .btn-link {
-  margin-top: 15px;
   margin-right: 10px;
   padding: 5px 15px;
   text-decoration: none;

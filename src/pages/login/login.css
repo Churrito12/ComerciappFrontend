@@ -6,7 +6,7 @@
 
 .login-form h2 {
   text-align: center;
-  color: #000000;
+  color: #333;
   font-size: 28px;
   padding: 70px 0 10px 0;
 }
@@ -23,7 +23,7 @@
 .btn-login {
   width: 100%;
   padding: 15px;
-  background-color: rgb(76, 162, 5);
+  background-color: #5cb85c;
   border: 0;
   box-sizing: border-box;
   cursor: pointer;
@@ -35,8 +35,8 @@
 .btn-login:hover,
 btn-login:active {
   color: white;
-  background-color: #165c19;
-  border-color: #165c19;
+  background-color: #468c46;
+  border-color: #468c46;
 }
 
 .btn-login:focus {
@@ -46,14 +46,14 @@ btn-login:active {
 .btn-register {
   width: 100%;
   padding: 15px;
-  background-color: gray;
+  background-color: #5cb85c;
   border: 0;
   box-sizing: border-box;
   cursor: pointer;
   font-weight: bold;
   text-align: center;
   font-size: large;
-  color: black;
+  color: white;
   margin-top: 20px;
   -webkit-appearance: button;
   -moz-appearance: button;
@@ -64,8 +64,8 @@ btn-login:active {
 .btn-register:hover,
 btn-register:active {
   color: white;
-  background-color: #10b981;
-  border-color: #10b981;
+  background-color: #468c46;
+  border-color: #468c46;
 }
 
 .btn-register:focus {

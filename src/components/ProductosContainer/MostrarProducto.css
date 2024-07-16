@@ -11,7 +11,7 @@
   width: 47.6rem;
 }
 
-/* Contenedor para la tabla */
+/* Contenedor de Tabla */
 .tabla-container {
   width: 100%;
   overflow-y: auto;
@@ -19,7 +19,7 @@
   margin-top: 1rem;
 }
 
-/* Estilos para la tabla */
+/* Tabla */
 .tabla {
   width: 100%;
   border-collapse: collapse;
@@ -32,7 +32,7 @@
   border: 1px solid #e0e0e0;
   padding: 15px;
   text-align: center;
-  min-width: 120px; /* Ancho mínimo de las celdas */
+  min-width: 120px;
 }
 
 .tabla th {
@@ -43,7 +43,7 @@
   background-color: #f1f1f1;
 }
 
-/* Estilos para el filtro */
+/* Filtro */
 .filtroA,
 .filtroB {
   width: 200px;
@@ -70,14 +70,14 @@
   font-style: italic;
 }
 
-/* Estilo para los botones */
+/* Botones */
 .button-container {
   display: flex;
   justify-content: first baseline;
   margin-bottom: 10px;
 }
 
-/* Estilos para el botón Crear */
+/*botón Crear */
 .CrearBoton > button {
   margin-top: 15px;
   margin-right: 10px;
@@ -95,7 +95,7 @@
   background-color: #4cae4c;
 }
 
-/* Estilos para el botón Volver */
+/* Botón volver */
 .button-container .VolverBoton > button {
   margin-top: 15px;
   margin-right: 10px;

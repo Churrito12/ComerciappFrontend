@@ -1,0 +1,64 @@
+/* Estilos generales */
+.CrearProductoContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 20rem;
+  padding: 2rem;
+}
+
+/* Formulario */
+.CrearProductoContainer .form-group {
+  margin-bottom: 1.5rem;
+}
+
+.CrearProductoContainer .form-label {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+.CrearProductoContainer .form-control {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 0.75rem;
+  font-size: 1rem;
+}
+
+/* Botones */
+.BtnAceptar {
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  margin-top: 1rem;
+  text-decoration: none;
+  color: #fff;
+  background-color: #5cb85c;
+  border: 1px solid #5cb85c;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s, border-color 0.3s;
+}
+
+.BtnAceptar:hover {
+  background-color: #4cae4c;
+  border-color: #4cae4c;
+}
+
+.BtnVolver {
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  margin-top: 1rem;
+  margin-left: 10px;
+  text-decoration: none;
+  color: white;
+  background-color: #5cb85c;
+  border: 1px solid #5cb85c;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.BtnVolver:hover {
+  background-color: #4cae4c;
+  color: #fff;
+}
